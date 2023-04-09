@@ -18,14 +18,21 @@
 
     /*
     // Example for Using Key Template (Single Key)
-    $license = new SunLicense(null, 'AA99-9A9A-A9A9-99AA'); // generates 1 license key with defined template and non-prefix
+    $license = new SunLicense(null, 'AA99-9A9A-A9A9-99AA'); // generates 1 license key with defined template, non-prefix and uppercase
     echo $license->generate(); // returned a string
     */
 
 
     /*
+    // Example for Using Key Template (Single Key)
+    $license = new SunLicense(null, 'AA99-9A9A-A9A9-99AA', 'lower'); // generates 1 license key with defined template, non-prefix and lowercase
+    echo $license->generate(); // returned a string
+    */
+
+    
+    /*
     // Example for Generate Multiple Keys
-    $license = new SunLicense(null, null, 5); // generates 5 license keys with default template and non-prefix
+    $license = new SunLicense(null, null, null, 5); // generates 5 license keys with default template, non-prefix and uppercase
     $keys = $license->generate(); // returned an array
     foreach ($keys as $key) {
         echo $key . '<br>';
@@ -34,7 +41,7 @@
 
 
     // Example with Defined Parameters
-    $license = new SunLicense('SLK', 'AA99-9A9A-A9A9-99AA', 5); // prefix, template (A => letters, 9 => numbers), number of keys
+    $license = new SunLicense('SLK', 'AA99-9A9A-A9A9-99AA', 'upper', 5); // prefix, template (A => letters, 9 => numbers), case of letters (upper, lower), number of keys
     print_r ( $license->generate() ); // prints 5 license keys with defined parameters
 
 ?>
