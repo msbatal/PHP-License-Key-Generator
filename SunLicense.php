@@ -12,7 +12,7 @@
  * @copyright Copyright (c) 2022, Sunhill Technology <www.sunhillint.com>
  * @license   https://opensource.org/licenses/lgpl-3.0.html The GNU Lesser General Public License, version 3.0
  * @link      https://github.com/msbatal/PHP-License-Key-Generator
- * @version   1.0.2
+ * @version   1.1.0
  */
 
 class SunLicense
@@ -31,13 +31,19 @@ class SunLicense
   private $template = 'X9XX99-XX99-9X9X-99XX9X';
 
   /**
+   * Case of letters in generated key
+   * @var string
+   */
+  private $case = 'upper';
+
+  /**
    * Number of keys to generate
    * @var integer
    */
   private $keyCount = 1;
 
   /**
-   * Generated Keys
+   * Generated keys
    * @var array
    */
   public $keys = [];
@@ -47,7 +53,7 @@ class SunLicense
    * @param string $template
    * @param integer $count
    */
-  public function __construct($prefix = null, $template = null, $count = null) {
+  public function __construct($prefix = null, $template = null, $case = 'upper', $count = null) {
     set_exception_handler(function($exception) {
       echo '<b>[SunClass] Exception:</b> '.$exception->getMessage();
     });
@@ -56,6 +62,9 @@ class SunLicense
     }
     if (!empty($template)) {
       $this->template = $template; // template of the key
+    }
+    if (!empty($case)) {
+      $this->case = $case; // case of letters (upper/lower)
     }
     if (!empty($count) && is_int($count)) {
       $this->keyCount = $count; // number of keys to generate
@@ -74,7 +83,11 @@ class SunLicense
     }
     for ($i = 0; $i < strlen($this->template); $i++) {
       if (preg_match('/[a-zA-Z]/', $this->template[$i])) {
-        $key .= chr(rand(65, 90)); // generate letters
+        if ($this->case == 'lower') {
+          $key .= chr(rand(97, 122)); // generate lowercase letters
+        } else {
+          $key .= chr(rand(65, 90)); // generate uppercase letters
+        }
       } else if (preg_match('/\d/', $this->template[$i])) {
         $key .= rand(0, 9); // generate numbers
       } else {
