@@ -4,6 +4,8 @@ SunLicense is a simple and robust PHP product license key generator class.
 
 The goal of this class is to let you; Create random and unique license keys with default or user-defined parameters.
 
+`Technical Document:` https://www.deepwiki.com/msbatal/PHP-License-Key-Generator
+
 <hr>
 
 `Prefix` attribute: This parameter let you add a prefix at the beginning of the license key. Optional; if you don't use this, the generated key will be with a non-prefix. You can use any string value. For example; if you use `SLK` as the value, your license key looks like `SLK-.......`
