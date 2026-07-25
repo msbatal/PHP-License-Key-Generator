@@ -12,7 +12,7 @@
  * @copyright Copyright (c) 2022, Sunhill Technology <www.sunhillint.com>
  * @license   https://opensource.org/licenses/lgpl-3.0.html The GNU Lesser General Public License, version 3.0
  * @link      https://github.com/msbatal/PHP-License-Key-Generator
- * @version   1.1.0
+ * @version   1.1.1
  */
 
 class SunLicense
@@ -54,9 +54,6 @@ class SunLicense
    * @param integer $count
    */
   public function __construct($prefix = null, $template = null, $case = 'upper', $count = null) {
-    set_exception_handler(function($exception) {
-      echo '<b>[SunClass] Exception:</b> '.$exception->getMessage();
-    });
     if (!empty($prefix)) {
       $this->prefix = $prefix; // prefix to be added to the key
     }
